@@ -43,8 +43,8 @@ public class StackApp<T> {
     @Override
     public boolean equals(Object o)
     {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        //if (this == o) return true;
+        //if (o == null || getClass() != o.getClass()) return false;
         StackApp<?> stackApp = (StackApp<?>) o;
         return Arrays.equals(array, stackApp.array);
     }

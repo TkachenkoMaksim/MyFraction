@@ -72,7 +72,7 @@ public class StackAppTest {
         assertEquals(null, s.pick());
     }
     @Test
-    public void testEqualsTrue () {
+    public void testEquals () {
         StackApp s = new StackApp(2);
         s.push("Привет");
         s.push(10);
