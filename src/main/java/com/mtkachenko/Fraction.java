@@ -48,7 +48,6 @@ public class Fraction implements Comparable{
     public boolean equals(Object o) {
         //if (!(o instanceof Fraction))
             //return false;
-
         Fraction f = (Fraction) o;
         double x = numerator/denominator;
         double y = f.numerator/f.denominator;
