@@ -2,11 +2,9 @@ package com.mtkachenko;
 
 import org.junit.Assert;
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 
 public class LinkedListAppTest {
@@ -26,6 +24,7 @@ public class LinkedListAppTest {
         actual.add("abc");
         Assert.assertEquals(arr, actual);
     }
+
     @Test
     public void addFirst () {
         LinkedListApp<String> sl = new LinkedListApp<>();
@@ -41,6 +40,7 @@ public class LinkedListAppTest {
         actual.add("cd");
         Assert.assertEquals(arr, actual);
     }
+
     @Test
     public void descendingIterator () {
         LinkedListApp<String> sl = new LinkedListApp<>();
@@ -58,6 +58,7 @@ public class LinkedListAppTest {
         actual.add("d");
         Assert.assertEquals(arr, actual);
     }
+
     @Test
     public void iterator () {
         LinkedListApp<String> sl = new LinkedListApp<>();
@@ -75,6 +76,7 @@ public class LinkedListAppTest {
         actual.add("cdc");
         Assert.assertEquals(arr, actual);
     }
+
     @Test
     public void getElementByIndex () {
         LinkedListApp<String> sl = new LinkedListApp<>();
@@ -83,6 +85,7 @@ public class LinkedListAppTest {
         sl.addFirst("cd");
         assertEquals("hgfg", sl.getElementByIndex(2));
     }
+
     @Test
     public void getSize () {
         LinkedListApp<String> sl = new LinkedListApp<>();

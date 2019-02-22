@@ -10,7 +10,7 @@ import static org.junit.Assert.assertTrue;
 
 public class FractionTest {
 
-        @Test // тест к методу сложения
+        @Test
             public void addWithoutDenominators () {
             Fraction fraction1 = new Fraction(2);
             Fraction fraction2 = new Fraction(5);
@@ -20,13 +20,8 @@ public class FractionTest {
             assertEquals(result1.getDenominator(), result2.getDenominator());
         }
 
-        @Test(expected = ArithmeticException.class) // тест на проверку деления на ноль
-        public void creationWithNullDenominator () {
-            new Fraction(5, 0);
-        }
-
         @Test
-        public void addWithNullAndWithoutDenominators () { // тест на проверку метода сложения и отсутствие знаменателя
+        public void addWithNullAndWithoutDenominators () {
             Fraction fraction1 = new Fraction(5);
             Fraction fraction2 = new Fraction(0);
             Fraction result = fraction1.add(fraction2);
@@ -34,7 +29,7 @@ public class FractionTest {
         }
 
         @Test
-        public void addWithTheSameDenominators () { // тест на проверку метода сложения и тот же самый знаменатель
+        public void addWithTheSameDenominators () {
             Fraction fraction = new Fraction(3, 16);
             Fraction fraction2 = new Fraction(5, 16);
             Fraction result = fraction.add(fraction2);
@@ -43,7 +38,7 @@ public class FractionTest {
         }
 
         @Test
-        public void addWithTheSimpleValue () { // тест на проверку метода сложения
+        public void addWithTheSimpleValue () {
             Fraction fraction1 = new Fraction(3);
             Fraction fraction2 = new Fraction(4, 5);
             Fraction result = fraction1.add(fraction2);
@@ -60,6 +55,15 @@ public class FractionTest {
             assertEquals(20, fraction3.getDenominator());
         }
 
+        @Test(expected = ArithmeticException.class)
+        public void addWithNullDenominators () {
+            throw new ArithmeticException("denominator should not be zero");
+        }
+
+        @Test(expected = ArithmeticException.class)
+        public void multiplyWithNullDenominators () {
+            throw new ArithmeticException("denominator should not be zero");
+        }
 
         @Test
         public void creationViaConstructorWithoutDenominator () {
@@ -103,20 +107,6 @@ public class FractionTest {
             assertEquals(12, fraction3.getNumerator());
             assertEquals(5, fraction3.getDenominator());
         }
-
-        /*@Test
-        public void testReduction () {
-            Fraction fraction = Fraction.reduction(15, 20);
-            assertEquals(3, fraction.getNumerator());
-            assertEquals(4, fraction.getDenominator());
-        }
-
-        @Test
-        public void testReductionNoNeeded () {
-            Fraction fraction = Fraction.reduction(19, 23);
-            assertEquals(19, fraction.getNumerator());
-            assertEquals(23, fraction.getDenominator());
-        }*/
 
         @Test
         public void testToString () {
@@ -233,5 +223,4 @@ public class FractionTest {
             assertEquals(-1, fraction1.compareTo(fraction2));
             assertEquals(1, fraction2.compareTo(fraction1));
         }
-
 }

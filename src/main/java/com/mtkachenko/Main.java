@@ -34,9 +34,15 @@ public class Main {
         //while (iterator.hasNext()){
             //System.out.println(iterator.next());
         //}
-        LinkedListApp<String> stringLinked = new LinkedListApp<>();
-        stringLinked.addLast("abc");
-        stringLinked.addLast("de");
+        LinkedListApp<String> stringLinked1 = new LinkedListApp<>();
+        stringLinked1.addLast("abc");
+        stringLinked1.addLast("bdc");
+        LinkedListApp<String> stringLinked2 = new LinkedListApp<>();
+        stringLinked2.addLast("abc");
+        stringLinked1.addLast("bdc");
+        System.out.println(stringLinked1.hashCode());
+        System.out.println(stringLinked2.hashCode());
+        System.out.println(stringLinked1.equals(stringLinked2));
 
     }
 }
