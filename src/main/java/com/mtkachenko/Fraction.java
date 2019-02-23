@@ -34,7 +34,7 @@ public class Fraction implements Comparable<Fraction> {
     @Override
     public String toString() {
         if (numerator == 0 || denominator == 1) {
-        return String.valueOf(numerator);
+            return String.valueOf(numerator);
         }
         return numerator + "/" + denominator;
     }
@@ -62,7 +62,6 @@ public class Fraction implements Comparable<Fraction> {
 
     @Override
     public int compareTo(Fraction o) {
-
         if (denominator == o.denominator){
             return numerator - o.numerator;
         }

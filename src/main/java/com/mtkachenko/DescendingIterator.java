@@ -2,6 +2,6 @@ package com.mtkachenko;
 
 import java.util.Iterator;
 
-public interface DescendingIterator<T> {//для обратного порядка
+public interface DescendingIterator<T> {
     Iterator<T> descendingIterator();
 }

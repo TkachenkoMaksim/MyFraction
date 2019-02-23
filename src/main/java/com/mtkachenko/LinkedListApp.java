@@ -9,7 +9,7 @@ public class LinkedListApp<T> implements Linked<T>, Iterable<T>, DescendingItera
     private int size = 0;
 
     public LinkedListApp() {
-        lstNode = new Node<T>(null, fstNode, null);
+        lstNode = new Node<T>(null,fstNode, null);
         fstNode = new Node<T>(null, null,lstNode);
     }
 
@@ -17,7 +17,7 @@ public class LinkedListApp<T> implements Linked<T>, Iterable<T>, DescendingItera
     public void addLast(T e) {
         Node<T> prev = lstNode;
         prev.setCurrentElement(e);
-        lstNode = new Node<T>(null, prev, null);
+        lstNode = new Node<T>(null,prev, null);
         prev.setNextElement(lstNode);
         size++;
     }
@@ -26,7 +26,7 @@ public class LinkedListApp<T> implements Linked<T>, Iterable<T>, DescendingItera
     public void addFirst(T e) {
         Node<T> next = fstNode;
         next.setCurrentElement(e);
-        fstNode = new Node<T>(null, null, next);
+        fstNode = new Node<T>(null, null,next);
         next.setPrevElement(fstNode);
         size++;
     }
@@ -53,9 +53,14 @@ public class LinkedListApp<T> implements Linked<T>, Iterable<T>, DescendingItera
         return new Iterator<T>() {
             int counter = 0;
             @Override
-            public boolean hasNext() {return counter < size;} public void remove() {}
+            public boolean hasNext(){
+                return counter < size;
+            }
+            public void remove() {}
             @Override
-            public T next() {return getElementByIndex(counter++);}
+            public T next(){
+                return getElementByIndex(counter++);
+            }
         };
     }
 
@@ -64,9 +69,14 @@ public class LinkedListApp<T> implements Linked<T>, Iterable<T>, DescendingItera
         return new Iterator<T>() {
             int counter = size - 1;
             @Override
-            public boolean hasNext() {return counter >= 0;} public void remove() {}
+            public boolean hasNext(){
+                return counter >= 0;
+            }
+            public void remove() {}
             @Override
-            public T next() {return getElementByIndex(counter--);}
+            public T next() {
+                return getElementByIndex(counter--);
+            }
         };
     }
 
@@ -105,31 +115,24 @@ public class LinkedListApp<T> implements Linked<T>, Iterable<T>, DescendingItera
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LinkedListApp<?> that = (LinkedListApp<?>) o;
-        return size == that.size &&
-                Objects.equals(fstNode, that.fstNode) &&
-                Objects.equals(lstNode, that.lstNode);
+        return size == that.size && Objects.equals(hashCode(), that.hashCode());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(fstNode, lstNode, size);
+        int rez = 0;
+        for (int i =0; i < size; i++) {
+            rez += Objects.hash(getElementByIndex(i));
+        }
+        return rez;
     }
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("LinkedListApp{");
-        sb.append("fstNode=").append(fstNode);
-        sb.append(", lstNode=").append(lstNode);
-        sb.append(", size=").append(size);
-        sb.append('}');
-        return sb.toString();
-    }
-
-    public Node<T> getFstNode() {
-        return fstNode;
-    }
-
-    public Node<T> getLstNode() {
-        return lstNode;
+        String res = " ";
+        for (int i =0; i < size; i++) {
+            res += (String.valueOf(getElementByIndex(i)) + " ");
+        }
+        return res;
     }
 }

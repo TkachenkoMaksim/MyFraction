@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class LinkedListAppTest {
 
@@ -93,5 +95,61 @@ public class LinkedListAppTest {
         sl.addFirst("dfg");
         sl.addFirst("cd");
         assertEquals(3, sl.size());
+    }
+
+    @Test
+    public void hashCodeWithNonEmptyCollection () {
+        LinkedListApp<String> sl = new LinkedListApp<>();
+        sl.addFirst("hgfg");
+        sl.addFirst("dfg");
+        sl.addFirst("cd");
+        assertEquals(3303139, sl.hashCode());
+    }
+
+    @Test
+    public void hashCodeWithEmptyCollection () {
+        LinkedListApp<String> sl = new LinkedListApp<>();
+        assertEquals(0, sl.hashCode());
+    }
+
+    @Test
+    public void equalsWithTheSameCollections () {
+        LinkedListApp<String> sl = new LinkedListApp<>();
+        sl.addFirst("hgfg");
+        sl.addFirst("dfg");
+        sl.addFirst("cd");
+        LinkedListApp<String> s2 = new LinkedListApp<>();
+        s2.addFirst("hgfg");
+        s2.addFirst("dfg");
+        s2.addFirst("cd");
+        assertTrue(sl.equals(s2));
+    }
+
+    @Test
+    public void equalsWithTheDifferentCollections () {
+        LinkedListApp<String> sl = new LinkedListApp<>();
+        sl.addFirst("hgfg");
+        sl.addFirst("dg");
+        sl.addFirst("cd");
+        LinkedListApp<String> s2 = new LinkedListApp<>();
+        s2.addFirst("hgfg");
+        s2.addFirst("dfg");
+        s2.addFirst("cd");
+        assertFalse(sl.equals(s2));
+    }
+
+    @Test
+    public void testToString () {
+        LinkedListApp<String> stringLinked1 = new LinkedListApp<>();
+        stringLinked1.addFirst("abc");
+        stringLinked1.addFirst("bdc");
+        stringLinked1.addFirst("hgfg");
+        stringLinked1.addFirst("dfg");
+        stringLinked1.addFirst("cd");
+        stringLinked1.addFirst("abc");
+        stringLinked1.addFirst("bdc");
+        stringLinked1.addFirst("abc");
+        stringLinked1.addFirst("bdc");
+        assertEquals(" bdc abc bdc abc cd dfg hgfg bdc abc ",stringLinked1.toString());
     }
 }
