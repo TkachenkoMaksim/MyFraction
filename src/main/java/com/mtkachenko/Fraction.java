@@ -13,22 +13,33 @@ public class Fraction implements Comparable<Fraction> {
         this(numerator, 1);
     }
 
+    public static int gcd(int a, int b){
+        return (b == 0 ? a : gcd(b, a % b));
+    }
+
+    public static Fraction reduction(int n, int d){
+        int gcd = Fraction.gcd(n, d);
+        n /= gcd;
+        d /= gcd;
+        return new Fraction(n, d);
+    }
+
     public Fraction add(Fraction f){
-        if (denominator == 0){
+        if (denominator == 0) {
             throw new ArithmeticException("denominator should not be zero");
         }
         int numeratorFin = this.numerator * f.denominator + f.numerator * this.denominator;
         int denominatorFin = this.denominator * f.denominator;
-        return new Fraction(numeratorFin, denominatorFin);
+        return Fraction.reduction(numeratorFin, denominatorFin);
     }
 
     public Fraction multiply(Fraction f){
-        if (denominator == 0){
+        if (denominator == 0) {
             throw new ArithmeticException("denominator should not be zero");
         }
         int numeratorFin = this.numerator * f.numerator;
         int denominatorFin = this.denominator * f.denominator;
-        return new Fraction(numeratorFin, denominatorFin);
+        return Fraction.reduction(numeratorFin, denominatorFin);
     }
 
     @Override

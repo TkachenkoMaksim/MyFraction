@@ -2,10 +2,7 @@ package com.mtkachenko;
 
 import org.junit.Test;
 
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 
 public class FractionTest {
@@ -33,8 +30,8 @@ public class FractionTest {
             Fraction fraction = new Fraction(3, 16);
             Fraction fraction2 = new Fraction(5, 16);
             Fraction result = fraction.add(fraction2);
-            assertEquals(128, result.getNumerator());
-            assertEquals(256, result.getDenominator());
+            assertEquals(1, result.getNumerator());
+            assertEquals(2, result.getDenominator());
         }
 
         @Test
@@ -57,12 +54,18 @@ public class FractionTest {
 
         @Test(expected = ArithmeticException.class)
         public void addWithNullDenominators () {
-            throw new ArithmeticException("denominator should not be zero");
+            Fraction fraction = new Fraction(3, 0);
+            if (fraction.getDenominator() == 0){
+                throw new ArithmeticException("denominator should not be zero");
+            }
         }
 
         @Test(expected = ArithmeticException.class)
         public void multiplyWithNullDenominators () {
-            throw new ArithmeticException("denominator should not be zero");
+            Fraction fraction = new Fraction(3, 0);
+            if (fraction.getDenominator() == 0){
+                throw new ArithmeticException("denominator should not be zero");
+            }
         }
 
         @Test
@@ -97,6 +100,19 @@ public class FractionTest {
             Fraction result = fraction1.multiply(fraction2);
             assertEquals(12, result.getNumerator());
             assertEquals(5, result.getDenominator());
+        }
+        @Test
+        public void testReduction(){
+            Fraction fraction = Fraction.reduction(15, 20);
+            assertEquals(3, fraction.getNumerator());
+            assertEquals(4, fraction.getDenominator());
+        }
+
+        @Test
+        public void testReductionNoNeeded(){
+            Fraction fraction = Fraction.reduction(19, 23);
+            assertEquals(19, fraction.getNumerator());
+            assertEquals(23, fraction.getDenominator());
         }
 
         @Test
