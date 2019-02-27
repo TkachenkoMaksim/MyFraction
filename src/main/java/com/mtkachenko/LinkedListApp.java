@@ -9,16 +9,16 @@ public class LinkedListApp<T> implements Linked<T>, Iterable<T>, DescendingItera
     private int size = 0;
 
     public LinkedListApp() {
-        lstNode = new Node<T>(null,firstNode, null);
-        fstNode = new Node<T>(null, null,lastNode);
+        lastNode = new Node<T>(null,firstNode, null);
+        firstNode = new Node<T>(null, null,lastNode);
     }
 
     @Override
     public void addLast(T e) {
         Node<T> prev = lastNode;
         prev.setCurrentElement(e);
-        lstNode = new Node<T>(null,prev, null);
-        prev.setNextElement(lstNode);
+        lastNode = new Node<T>(null,prev, null);
+        prev.setNextElement(lastNode);
         size++;
     }
 
@@ -26,8 +26,8 @@ public class LinkedListApp<T> implements Linked<T>, Iterable<T>, DescendingItera
     public void addFirst(T e) {
         Node<T> next = firstNode;
         next.setCurrentElement(e);
-        fstNode = new Node<T>(null, null,next);
-        next.setPrevElement(fstNode);
+        firstNode = new Node<T>(null, null,next);
+        next.setPrevElement(firstNode);
         size++;
     }
 
