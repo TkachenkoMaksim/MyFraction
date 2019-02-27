@@ -4,18 +4,18 @@ import java.util.Iterator;
 import java.util.Objects;
 
 public class LinkedListApp<T> implements Linked<T>, Iterable<T>, DescendingIterator<T>{
-    private Node<T> fstNode;
-    private Node<T> lstNode;
+    private Node<T> firstNode;
+    private Node<T> lastNode;
     private int size = 0;
 
     public LinkedListApp() {
-        lstNode = new Node<T>(null,fstNode, null);
-        fstNode = new Node<T>(null, null,lstNode);
+        lstNode = new Node<T>(null,firstNode, null);
+        fstNode = new Node<T>(null, null,lastNode);
     }
 
     @Override
     public void addLast(T e) {
-        Node<T> prev = lstNode;
+        Node<T> prev = lastNode;
         prev.setCurrentElement(e);
         lstNode = new Node<T>(null,prev, null);
         prev.setNextElement(lstNode);
@@ -24,7 +24,7 @@ public class LinkedListApp<T> implements Linked<T>, Iterable<T>, DescendingItera
 
     @Override
     public void addFirst(T e) {
-        Node<T> next = fstNode;
+        Node<T> next = firstNode;
         next.setCurrentElement(e);
         fstNode = new Node<T>(null, null,next);
         next.setPrevElement(fstNode);
@@ -38,7 +38,7 @@ public class LinkedListApp<T> implements Linked<T>, Iterable<T>, DescendingItera
 
     @Override
     public T getElementByIndex(int counter) {
-        Node<T> target = fstNode.getNextElement();
+        Node<T> target = firstNode.getNextElement();
         for (int i = 0; i < counter; i++){
             target = getNextElement(target);
         }
